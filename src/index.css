@@ -1,0 +1,52 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+#root {
+
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  padding: 16px;
+  gap: 20px;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 16px;
+
+  }
+
+
+.lists {
+  border: 2px solid white;
+  padding: 16px;
+  width: 200px;
+  border-radius: 15px;
+}
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
