@@ -1,4 +1,8 @@
-export const TodolistItem = (props: any) => {
+type Props = {
+    title: string;
+};
+
+export const TodolistItem = (props: Props) => {
     return (
         <div className="lists">
             <h3>{props.title}</h3>
