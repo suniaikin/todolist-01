@@ -1,8 +1,15 @@
-type Props = {
-    title: string;
-};
+import { PropsTypes } from "./Types";
 
-export const TodolistItem = (props: Props) => {
+export const TodolistItem = (props: PropsTypes) => {
+    const listItems = props.tasks.map((task) => {
+        return (
+            <li>
+                <input type="checkbox" checked={task.isDone} />
+                <span>{task.title}</span>
+            </li>
+        );
+    });
+
     return (
         <div className="lists">
             <h3>{props.title}</h3>
@@ -10,18 +17,7 @@ export const TodolistItem = (props: Props) => {
                 <input />
                 <button>+</button>
             </div>
-            <ul>
-                <li>
-                    <input type="checkbox" checked={true} />{" "}
-                    <span>HTML&CSS</span>
-                </li>
-                <li>
-                    <input type="checkbox" checked={true} /> <span>JS</span>
-                </li>
-                <li>
-                    <input type="checkbox" checked={false} /> <span>React</span>
-                </li>
-            </ul>
+            <ul>{listItems}</ul>
             <div>
                 <button>All</button>
                 <button>Active</button>
