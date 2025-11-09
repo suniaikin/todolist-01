@@ -8,3 +8,7 @@ export type PropsTypes = {
     title: string;
     tasks: TaskType[];
 };
+
+export type ButtonProps = {
+    label: string;
+};

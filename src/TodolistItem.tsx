@@ -1,4 +1,5 @@
 import { PropsTypes } from "./Types";
+import { Button } from "./Button";
 
 export const TodolistItem = ({ tasks, title }: PropsTypes) => {
     const listItems = tasks.map((task) => {
@@ -19,11 +20,12 @@ export const TodolistItem = ({ tasks, title }: PropsTypes) => {
             <div>
                 <input />
                 <button>+</button>
-            </div>           {tasksList}
+            </div>{" "}
+            {tasksList}
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <Button label="All" />
+				<Button label="Active" />
+				<Button label="Completed" />
             </div>
         </div>
     );
