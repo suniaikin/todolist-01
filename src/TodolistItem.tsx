@@ -1,7 +1,8 @@
 import { PropsTypes } from "./Types";
 
-export const TodolistItem = (props: PropsTypes) => {
-    const listItems = props.tasks.map((task) => {
+export const TodolistItem = ({ tasks, title }: PropsTypes) => {
+
+    const listItems = tasks.map((task) => {
         return (
             <li>
                 <input type="checkbox" checked={task.isDone} />
@@ -12,7 +13,7 @@ export const TodolistItem = (props: PropsTypes) => {
 
     return (
         <div className="lists">
-            <h3>{props.title}</h3>
+            <h3>{title}</h3>
             <div>
                 <input />
                 <button>+</button>
