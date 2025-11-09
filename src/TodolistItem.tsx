@@ -1,7 +1,6 @@
 import { PropsTypes } from "./Types";
 
 export const TodolistItem = ({ tasks, title }: PropsTypes) => {
-
     const listItems = tasks.map((task) => {
         return (
             <li>
@@ -11,14 +10,16 @@ export const TodolistItem = ({ tasks, title }: PropsTypes) => {
         );
     });
 
+    const tasksList =
+        tasks.length === 0 ? <p>No tasks available</p> : <ul>{listItems}</ul>;
+
     return (
         <div className="lists">
             <h3>{title}</h3>
             <div>
                 <input />
                 <button>+</button>
-            </div>
-            <ul>{listItems}</ul>
+            </div>           {tasksList}
             <div>
                 <button>All</button>
                 <button>Active</button>
