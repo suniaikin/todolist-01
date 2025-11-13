@@ -11,4 +11,6 @@ export type PropsTypes = {
 
 export type ButtonProps = {
     label: string;
+    
+    onclick?: () => void;
 };

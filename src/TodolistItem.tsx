@@ -6,7 +6,8 @@ export const TodolistItem = ({ tasks, title }: PropsTypes) => {
         return (
             <li>
                 <input type="checkbox" checked={task.isDone} />
-                <span>{task.title}</span>
+                <span>{task.title}</span>{"  "}
+                <Button label="x" />
             </li>
         );
     });
@@ -19,13 +20,13 @@ export const TodolistItem = ({ tasks, title }: PropsTypes) => {
             <h3>{title}</h3>
             <div>
                 <input />
-                <button>+</button>
-            </div>{" "}
-            {tasksList}
+                <Button label="+" />
+            </div>
+            <ul>{tasksList}</ul>
             <div>
                 <Button label="All" />
-				<Button label="Active" />
-				<Button label="Completed" />
+                <Button label="Active" />
+                <Button label="Completed" />
             </div>
         </div>
     );

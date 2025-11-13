@@ -6,3 +6,9 @@
 .app > div {
   margin-right: 50px;
 }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0px;
+}
