@@ -1,16 +1,7 @@
-export type TaskType = {
-    id: number;
+export type TasksType = {
+    id: string;
     title: string;
     isDone: boolean;
 };
 
-export type PropsTypes = {
-    title: string;
-    tasks: TaskType[];
-};
-
-export type ButtonProps = {
-    label: string;
-    
-    onclick?: () => void;
-};
+export type FilterValuesType = "all" | "active" | "completed";

@@ -1,13 +1,28 @@
-import { PropsTypes } from "./Types";
 import { Button } from "./Button";
+import { TasksType } from "./types";
+import { FilterValuesType } from "./types";
 
-export const TodolistItem = ({ tasks, title }: PropsTypes) => {
+
+type TodolistItemProps = {
+    title: string;
+    tasks: TasksType[];
+    deleteTask: (taskId: TasksType["id"]) => void;
+    changeFilter: (filter: FilterValuesType) => void;
+};
+
+export const TodolistItem = ({ 
+	tasks, 
+	title, 
+	deleteTask, 
+	changeFilter 
+}: TodolistItemProps) => {
     const listItems = tasks.map((task) => {
-        return (
+	const deleteTaskHandler = () => deleteTask(task.id)
+	        return (
             <li>
                 <input type="checkbox" checked={task.isDone} />
-                <span>{task.title}</span>{"  "}
-                <Button label="x" />
+                <span>{task.title}</span>
+                <Button label="x" onClickHandler={deleteTaskHandler} />
             </li>
         );
     });
@@ -24,9 +39,9 @@ export const TodolistItem = ({ tasks, title }: PropsTypes) => {
             </div>
             <ul>{tasksList}</ul>
             <div>
-                <Button label="All" />
-                <Button label="Active" />
-                <Button label="Completed" />
+                <Button label="All" onClickHandler={() => changeFilter('all')}/>
+                <Button label="Active" onClickHandler={() => changeFilter('active')}/>
+                <Button label="Completed" onClickHandler={() => changeFilter('completed')}/>
             </div>
         </div>
     );
