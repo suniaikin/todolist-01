@@ -28,7 +28,11 @@ export function App() {
 		title: title,
 		isDone: false		
 	}
+	const newState: TasksType[] = [...tasks, newTask]
+	setTasks(newState]);
+
     }
+
 
 
 
