@@ -16,31 +16,26 @@ export function App() {
         { id: v1(), title: "Olive Garden", isDone: false },
     ]);
 
-
     const deleteTask = (taskId: TasksType["id"]) => {
         const nextTasks: TasksType[] = tasks.filter((t) => t.id !== taskId);
         setTasks(nextTasks);
     };
 
-    const createTask = (title: string) => {
-	const newTask: TaskType = {
-		id: v1(),
-		title: title,
-		isDone: false		
-	}
-	const newState: TasksType[] = [...tasks, newTask]
-	setTasks(newState]);
-
-    }
-
-
-
+    const createTask = (title: TasksType["title"]) => {
+        const newTask: TasksType = {
+            id: v1(),
+            title: title,
+            isDone: false,
+        };
+        const newState: TasksType[] = [...tasks, newTask];
+        setTasks(newState);
+    };
 
     const [filter, setFilter] = useState<FilterValuesType>("all");
 
     const changeFilter = (filter: FilterValuesType) => {
-		setFilter(filter);
-	};
+        setFilter(filter);
+    };
 
     const getFilteredTasks = (
         tasks: TasksType[],
@@ -62,6 +57,7 @@ export function App() {
                 tasks={getFilteredTasks(tasks, filter)}
                 deleteTask={deleteTask}
                 changeFilter={changeFilter}
+                createTask={createTask}
             />
         </div>
     );
