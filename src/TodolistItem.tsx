@@ -30,7 +30,7 @@ export const TodolistItem = ({
     });
 
     const [taskInput, setTaskInput] = useState("");
-//     alert(taskInput);
+    //     alert(taskInput);
 
     const tasksList =
         tasks.length === 0 ? <p>No tasks available</p> : <ul>{listItems}</ul>;
@@ -40,7 +40,7 @@ export const TodolistItem = ({
             <h3>{title}</h3>
             <div>
                 <input
-                    placeholder="max task lenght is 3 charters"
+                    placeholder="min task lenght is 3 charters"
                     value={taskInput}
                     onChange={(e) => setTaskInput(e.currentTarget.value)}
                 />
@@ -48,9 +48,16 @@ export const TodolistItem = ({
                     label="+"
                     disabled={taskInput.length === 0 || taskInput.length > 10}
                     onClickHandler={() => {
-                        createTask("");
+                        createTask(taskInput);
+		    setTaskInput("")
                     }}
                 />
+                {taskInput && taskInput.length <= 10 && (
+                    <div>max lenght must be less than 10</div>
+                )}
+                {taskInput && taskInput.length > 10 && (
+                    <div style={{color: "red"}}>task title is too long!</div>
+                )}
             </div>
             <ul>{tasksList}</ul>
             <div>
