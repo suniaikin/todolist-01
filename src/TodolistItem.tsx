@@ -1,7 +1,7 @@
 import { Button } from "./Button";
 import { TasksType } from "./types";
 import { FilterValuesType } from "./types";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 type TodolistItemProps = {
     title: string;
@@ -29,7 +29,8 @@ export const TodolistItem = ({
         );
     });
 
-    const taskInputRef = useRef<HTMLInputElement>(null);
+    const [taskInput, setTaskInput] = useState("");
+//     alert(taskInput);
 
     const tasksList =
         tasks.length === 0 ? <p>No tasks available</p> : <ul>{listItems}</ul>;
@@ -38,14 +39,16 @@ export const TodolistItem = ({
         <div className="lists">
             <h3>{title}</h3>
             <div>
-                <input ref={taskInputRef} />
+                <input
+                    placeholder="max task lenght is 3 charters"
+                    value={taskInput}
+                    onChange={(e) => setTaskInput(e.currentTarget.value)}
+                />
                 <Button
                     label="+"
+                    disabled={taskInput.length === 0 || taskInput.length > 10}
                     onClickHandler={() => {
-                        if (taskInputRef.current) {
-                            createTask(taskInputRef.current.value);
-                            taskInputRef.current.value = "";
-                        }
+                        createTask("");
                     }}
                 />
             </div>
