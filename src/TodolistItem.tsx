@@ -30,37 +30,43 @@ export const TodolistItem = ({
     });
 
     const [taskInput, setTaskInput] = useState("");
-    //     alert(taskInput);
 
     const tasksList =
         tasks.length === 0 ? <p>No tasks available</p> : <ul>{listItems}</ul>;
 
+    const createTaskHandler = () => {
+        createTask(taskInput);
+        setTaskInput("");
+    };
+
     return (
         <div className="lists">
             <h3>{title}</h3>
-            <div>
+            <div className="input-form">
                 <input
                     placeholder="min task lenght is 3 charters"
                     value={taskInput}
                     onChange={(e) => setTaskInput(e.currentTarget.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            createTaskHandler();
+                        }
+                    }}
                 />
                 <Button
                     label="+"
                     disabled={taskInput.length === 0 || taskInput.length > 10}
-                    onClickHandler={() => {
-                        createTask(taskInput);
-		    setTaskInput("")
-                    }}
+                    onClickHandler={createTaskHandler}
                 />
                 {taskInput && taskInput.length <= 10 && (
                     <div>max lenght must be less than 10</div>
                 )}
                 {taskInput && taskInput.length > 10 && (
-                    <div style={{color: "red"}}>task title is too long!</div>
+                    <div style={{ color: "red" }}>task title is too long!</div>
                 )}
             </div>
             <ul>{tasksList}</ul>
-            <div>
+            <div className="buttons_bottom">
                 <Button
                     label="All"
                     onClickHandler={() => changeFilter("all")}

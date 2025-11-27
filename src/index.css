@@ -18,9 +18,7 @@ body {
     h3,
     h4,
     h5,
-    h6
-     {
-
+    h6 {
         color: ivory;
     }
 }
@@ -49,11 +47,18 @@ body {
 .lists {
     border: 2px solid white;
     padding: 16px;
-    width: 200px;
     border-radius: 15px;
+    width: 250px;
 }
 
 h1 {
     font-size: 3.2em;
     line-height: 1.1;
+}
+
+.buttons_bottom {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
 }
