@@ -1,6 +1,6 @@
 import "./App.css";
 import { TodolistItem } from "./TodolistItem";
-import { TasksType } from "./types";
+import { Task } from "./types";
 import { useState } from "react";
 import { FilterValuesType } from "./types";
 import { v1 } from "uuid";
@@ -10,24 +10,24 @@ export function App() {
     const todolistTitle_1: string = "What to learn";
 
     //state
-    const [tasks, setTasks] = useState<TasksType[]>([
+    const [tasks, setTasks] = useState<Task[]>([
         { id: v1(), title: "Panera Bread", isDone: true },
         { id: v1(), title: "Starbucks", isDone: false },
         { id: v1(), title: "Olive Garden", isDone: false },
     ]);
 
-    const deleteTask = (taskId: TasksType["id"]) => {
-        const nextTasks: TasksType[] = tasks.filter((t) => t.id !== taskId);
-        setTasks(nextTasks);
+    const deleteTask = (taskId: Task["id"]) => {
+        const nextState: Task[] = tasks.filter((t) => t.id !== taskId);
+        setTasks(nextState);
     };
 
-    const createTask = (title: TasksType["title"]) => {
-        const newTask: TasksType = {
+    const createTask = (title: Task["title"]) => {
+        const newTask: Task = {
             id: v1(),
             title: title,
             isDone: false,
         };
-        const newState: TasksType[] = [...tasks, newTask];
+        const newState: Task[] = [...tasks, newTask];
         setTasks(newState);
     };
 
@@ -37,10 +37,20 @@ export function App() {
         setFilter(filter);
     };
 
+    const changeTaskStatus = (
+        taskId: Task["id"],
+        newTaskStatus: Task["isDone"]
+    ) => {
+        const nextState: Task[] = tasks.map((t) =>
+            t.id === taskId ? { ...t, isDone: newTaskStatus } : t
+        );
+        setTasks(nextState);
+    };
+
     const getFilteredTasks = (
-        tasks: TasksType[],
+        tasks: Task[],
         filter: FilterValuesType
-    ): TasksType[] => {
+    ): Task[] => {
         switch (filter) {
             case "active":
                 return tasks.filter((t) => !t.isDone);
@@ -50,14 +60,17 @@ export function App() {
                 return tasks;
         }
     };
+
     return (
         <div className="App">
             <TodolistItem
+                filter={filter}
                 title={todolistTitle_1}
                 tasks={getFilteredTasks(tasks, filter)}
                 deleteTask={deleteTask}
                 changeFilter={changeFilter}
                 createTask={createTask}
+                changeTaskStatus={changeTaskStatus}
             />
         </div>
     );
