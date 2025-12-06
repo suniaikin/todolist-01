@@ -84,6 +84,7 @@ export const TodolistItem = ({
                             taskInput.length === 0 || taskInput.length > 10
                         }
                         onClickHandler={createTaskHandler}
+                        className="add-button"
                     />
                     <div className="limits-notification">
                         {taskInput && taskInput.length < 10 && (
